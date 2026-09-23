@@ -1,138 +1,100 @@
-# silent_disorder
+# Silent Speech Recognition — Neural Network Experiment
 
-Silent Speech EMG Signal Analysis and Classification
-Project Overview
-This project focuses on analyzing and classifying Electromyography (EMG) signals from silent speech data. The goal is to process raw EMG signals, extract meaningful features, and build a neural network model for classification tasks related to speech recognition from muscle activity.
+Research notebook exploring neural-network classification of silent-speech signals recorded from electromyography (EMG).
 
-Project Structure
-The project follows a comprehensive pipeline for EMG signal processing and machine learning:
+This repository extends the preprocessing work in the companion silent-speech project and focuses on signal analysis, feature preparation, neural-network training, and evaluation.
 
-1. Data Loading and Exploration
-Loads EMG data from text files containing time-series data
+## Experimental pipeline
 
-Parses and structures the data into proper time and EMG value columns
+~~~text
+EMG time series
+      │
+      ▼
+Signal filtering
+      │
+      ▼
+Normalization
+      │
+      ▼
+Window segmentation
+      │
+      ▼
+Feature representation
+      │
+      ▼
+Neural network
+      │
+      ▼
+Class prediction
+~~~
 
-Initial data exploration through various visualization techniques
+## Signal processing
 
-2. Data Visualization
-The project includes multiple visualization approaches to understand the EMG signal characteristics:
+The notebook explores:
 
-Time Series Plot: Shows EMG values over time
+- EMG time-series visualization
+- Histograms and scatter plots
+- Spectrogram analysis
+- Butterworth band-pass filtering
+- Z-score normalization
+- Overlapping-window segmentation
+- Feature preparation for supervised learning
 
-Histogram: Displays frequency distribution of EMG values
+The documented experiment uses a band-pass range of approximately 20–450 Hz.
 
-Scatter Plot: Visualizes the relationship between time and EMG values
+## Model experiment
 
-Spectrogram: Analyzes frequency content over time
+The documented neural-network experiment uses:
 
-3. Signal Preprocessing
-Advanced signal processing techniques are applied:
+- Fully connected neural network
+- ReLU hidden layers
+- Two hidden layers with 32 units each
+- Softmax output layer for two classes
+- Adam optimizer
+- Categorical cross-entropy
+- 30 training epochs
+- Batch size of 32
 
-Bandpass Filtering: Removes noise using a Butterworth filter (20-450 Hz)
+The historical notebook reports training accuracy around 50% and validation accuracy around 46%. These figures are experiment-specific and should not be interpreted as production performance.
 
-Normalization: Standardizes EMG values using z-score normalization
+## Important data limitation
 
-Segmentation: Divides the signal into overlapping windows for analysis
+The current notebook uses randomly generated labels for demonstration purposes. Meaningful silent-speech recognition requires a properly collected and labeled EMG dataset.
 
-4. Machine Learning Pipeline
-Feature Engineering: Reshapes data for neural network input
+This limitation is intentionally documented because it affects the validity of any model-performance conclusion.
 
-Model Architecture: Implements a deep learning model with:
+## Research directions
 
-Input layer (1 feature)
+Potential next steps include:
 
-Two hidden layers (32 neurons each, ReLU activation)
+- real labeled EMG datasets
+- CNN or LSTM architectures
+- wavelet or MFCC-style feature representations
+- hyperparameter optimization
+- cross-validation
+- multi-class recognition
+- real-time inference
 
-Output layer (2 classes, softmax activation)
+## Repository structure
 
-Training: 30 epochs with batch size of 32
+~~~text
+.
+├── ssr-using-neural-networks.ipynb
+├── README.md
+└── LICENSE
+~~~
 
-Evaluation: Performance assessment on test data
+## How to run
 
-Key Features
-Signal Processing: Professional-grade EMG signal filtering and normalization
+1. Create a Python environment.
+2. Install the notebook dependencies.
+3. Open the notebook in Jupyter.
+4. Execute the notebook cells in order.
 
-Data Analysis: Comprehensive exploratory data analysis
+## Related project
 
-Deep Learning: Neural network implementation using TensorFlow/Keras
+The companion repository **Silent Speech Recognition — EMG Preprocessing** focuses on signal preprocessing and preparation. Keeping the two repositories separate makes the preprocessing and modeling stages easier to inspect independently.
 
-Visualization: Multiple plotting techniques for data insight
+## License
 
-Modular Code: Well-structured functions for reusability
-
-Technical Specifications
-Data Format
-Input: Tab-separated text files with timestamp,EMG_value format
-
-Sampling Frequency: 1000 Hz
-
-Filter Parameters: 20-450 Hz bandpass filter
-
-Model Architecture
-text
-Input Layer: 1 neuron
-Hidden Layer 1: 32 neurons (ReLU)
-Hidden Layer 2: 32 neurons (ReLU)
-Output Layer: 2 neurons (Softmax)
-Total Parameters: 1,186
-Performance Metrics
-Training Accuracy: ~50%
-
-Validation Accuracy: ~46%
-
-Loss Function: Categorical Crossentropy
-
-Optimizer: Adam
-
-Requirements
-python
-numpy
-pandas
-tensorflow/keras
-scipy
-matplotlib
-scikit-learn
-Usage
-Place EMG data files in the appropriate directory structure
-
-Update file paths in the code to match your data location
-
-Run the script sequentially to:
-
-Load and preprocess data
-
-Visualize signals
-
-Train the model
-
-Evaluate performance
-
-Potential Improvements
-Implement more sophisticated feature extraction (MFCC, wavelet transforms)
-
-Experiment with different neural network architectures (CNN, LSTM)
-
-Add hyperparameter tuning
-
-Incorporate cross-validation
-
-Expand to multi-class classification
-
-Add real-time prediction capabilities
-
-Applications
-This work has potential applications in:
-
-Silent speech interfaces
-
-Assistive technology for speech-impaired individuals
-
-Biomedical signal processing
-
-Human-computer interaction systems
-
-Note
-The current implementation uses randomly generated labels for demonstration purposes. In a real-world scenario, you would replace this with actual labeled EMG data corresponding to specific speech patterns or phonemes.
-
-This project serves as a foundation for more advanced EMG-based speech recognition systems and demonstrates the complete pipeline from raw signal processing to machine learning model deployment.
-
+Apache License 2.0.
